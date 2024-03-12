@@ -1,0 +1,11 @@
+.product-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .product-images img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
