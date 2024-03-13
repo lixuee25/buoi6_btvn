@@ -1,88 +1,51 @@
 var products = [];
-
 function saveProduct() {
-  // Lấy giá trị từ các trường input
-  var productId = document.getElementById('productId').value;
-  var productName = document.getElementById('productName').value;
-  var productCode = document.getElementById('productCode').value;
-  var productPrice = document.getElementById('productPrice').value;
-  var productImages = document.getElementById('productImages').files;
-
-  // Tạo một đối tượng sản phẩm mới
-  var newProduct = {
-    id: productId,
-    name: productName,
-    code: productCode,
-    price: productPrice,
-    images: productImages
+  var a = {
+    productId: document.getElementById('productId').value,
+    productName: document.getElementById('productName').value,
+    productCode: document.getElementById('productCode').value,
+    productPrice: document.getElementById('productPrice').value,
+    productImages: document.getElementById('productImages').files[0]
   };
-
-  // Thêm sản phẩm vào mảng products
-  products.push(newProduct);
-
-  // Xóa giá trị của các trường input
-  document.getElementById('productId').value = '';
-  document.getElementById('productName').value = '';
-  document.getElementById('productCode').value = '';
-  document.getElementById('productPrice').value = '';
-  document.getElementById('productImages').value = '';
-
-  alert('Sản phẩm đã được lưu');
+console.log(a);
+products.push(a);
 }
-
-function showProducts() {
-  var productList = document.getElementById('productList');
   
-  // Xóa các sản phẩm hiện có trong danh sách
-  productList.innerHTML = '';
-
-  // Lặp qua danh sách các sản phẩm
-  for (var i = 0; i < products.length; i++) {
-    var product = products[i];
-
-    // Tạo một phần tử danh sách và gán nội dung
-    var listItem = document.createElement('li');
-    listItem.textContent = 'ID: ' + product.id + ', Tên: ' + product.name + ', Mã: ' + product.code + ', Giá: ' + product.price;
-
-    // Tạo một container cho hình ảnh
-    var imageContainer = document.createElement('div');
-    imageContainer.classList.add('image-container');
-
-    // Lặp qua danh sách các hình ảnh
-    for (var j = 0; j < product.images.length; j++) {
-      var image = product.images[j];
-      
-      // Tạo một phần tử hình ảnh và gán nguồn dữ liệu
-      var img = document.createElement('img');
-      img.src = URL.createObjectURL(image);
-      img.classList.add('product-image');
-
-      // Thêm hình ảnh vào container
-      imageContainer.appendChild(img);
+function showProducts() {
+  var html = '';
+  for (let i = 0; i < products.length; i++) {
+    html += '<div class="col-3">';
+    html += '<div class="card" style="width: 18rem;margin-bottom: 20px;">';
+    var img = new Image();
+    if (products[i].productImages) {
+      img.src = window.URL.createObjectURL(products[i].productImages);
+      img.classList.add("card-img-top");
+      img.style.height = "300px";
+      html += '<div>';
+      html += img.outerHTML;
+      html += '</div>';
     }
-
-    // Thêm container hình ảnh vào phần tử danh sách
-    listItem.appendChild(imageContainer);
-
-    // Thêm phần tử danh sách vào danh sách sản phẩm
-    productList.appendChild(listItem);
+    html += '<div class="card-body">';
+    html += '<div class="card-title">' + products[i].productName + '</h5>';
+    html += '<p class="card-text">' + products[i].productPrice + ' vnđ</p>';
+    html += '<p class="card-text">' + products[i].productCode + '</p>';
+    html += '<a href="#" class="btn btn-danger" onclick="order()">Đặt mua</a>';
+    html += '</div>';
+    html += '</div>';
+    html += '</div>';
   }
+  document.getElementById('productList').innerHTML = html;
 }
-
 function resetForm() {
-  // Xóa giá trị của các trường input
   document.getElementById('productId').value = '';
   document.getElementById('productName').value = '';
   document.getElementById('productCode').value = '';
   document.getElementById('productPrice').value = '';
-  document.getElementById('productImages').value = '';
+  document.getElementById('productImages').file[0] = '';
+  // products = [];
 
-  // Xóa danh sách sản phẩm
-  products = [];
+  // var productList = document.getElementById('productList');
+  // productList.innerHTML = '';
 
-  // Xóa danh sách sản phẩm hiển thị trên giao diện
-  var productList = document.getElementById('productList');
-  productList.innerHTML = '';
-
-  alert('Đã xóa các sản phẩm');
+  // alert('Đã xóa các sản phẩm');
 }

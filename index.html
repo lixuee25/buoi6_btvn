@@ -11,13 +11,35 @@
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+        background-color: rgb(78, 141, 150);
+    }
+
+    /* .card {
+        width: 18rem;
+        margin-bottom: 20px;
+    }
+
+    #productList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card-img-top {
+        object-fit: cover;
+        height: 300px;
+    } */
+    </style>
 </head>
 
 <body onload="listProducts()">
     <div class="container-fluid" style="margin-top: 20px;">
         <div class="row" id="men">
             <div class="col-12">
-                <h1>THỜI TRANG NAM</h1>
+                <h1 style="text-align: center;">THỜI TRANG NAM</h1>
             </div>
         </div>
         <div class="row">
@@ -44,8 +66,8 @@
                         <label for="productImages">Hình ảnh sản phẩm:</label>
                         <input type="file" class="form-control" id="productImages" multiple>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Lưu</button>
-                    <button type="button" class="btn btn-primary" onclick="showProducts()">Hiển thị</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="showProducts()">Show</button>
                     <button type="button" class="btn btn-primary" onclick="resetForm()">Reset</button>
                 </form>
             </div>
